@@ -1,0 +1,1509 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Kalkulator Kubikasi Kayu</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: #f3f1ed;
+    color: #292929;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1250px;
+    margin: auto;
+}
+
+/* HEADER */
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 18px;
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 27px;
+    background: #8b5e34;
+    color: white;
+}
+
+.header h1 {
+    font-size: 25px;
+    color: #292929;
+}
+
+.header p {
+    margin-top: 4px;
+    font-size: 13px;
+    color: #777;
+}
+
+/* LAYOUT */
+
+.main-layout {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 18px;
+    align-items: stretch;
+}
+
+/* CARD */
+
+.card {
+    background: white;
+    border-radius: 16px;
+    border: 1px solid #e5e1db;
+    box-shadow: 0 5px 20px rgba(0,0,0,.05);
+}
+
+/* INPUT CARD */
+
+.input-card {
+    padding: 22px;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+    background: #f0e7dc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+.section-title h2 {
+    font-size: 17px;
+}
+
+/* FORM */
+
+.form-group {
+    margin-bottom: 13px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 6px;
+}
+
+.form-group label span {
+    font-weight: normal;
+    color: #a06a3a;
+}
+
+input,
+select {
+    width: 100%;
+    height: 46px;
+    padding: 10px 13px;
+    border: 1px solid #dcd8d2;
+    border-radius: 9px;
+    font-size: 16px;
+    outline: none;
+    background: #fafafa;
+}
+
+input:focus,
+select:focus {
+    background: white;
+    border-color: #a66a37;
+    box-shadow: 0 0 0 3px rgba(166,106,55,.10);
+}
+
+select {
+    cursor: pointer;
+}
+
+/* INFO */
+
+.quick-info {
+    margin-top: 15px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: #f7f5f2;
+    font-size: 11px;
+    line-height: 1.5;
+    color: #777;
+}
+
+/* BUTTON INPUT */
+
+.button-area {
+    display: flex;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+    border-radius: 9px;
+    height: 43px;
+    font-size: 13px;
+    font-weight: bold;
+    transition: .15s;
+}
+
+.btn-add {
+    flex: 1;
+    background: #80552f;
+    color: white;
+}
+
+.btn-add:hover {
+    background: #684323;
+}
+
+.btn-reset {
+    width: 85px;
+    background: #eeeeee;
+    color: #555;
+}
+
+.btn-reset:hover {
+    background: #dedede;
+}
+
+/* PREVIEW */
+
+.preview {
+    margin-top: 15px;
+    padding: 17px;
+    border-radius: 12px;
+    background: #f1f7f3;
+    border: 1px solid #d8e9dd;
+}
+
+.preview-title {
+    font-size: 10px;
+    color: #64806e;
+    margin-bottom: 5px;
+}
+
+.preview-value {
+    font-size: 28px;
+    font-weight: bold;
+    color: #24653d;
+}
+
+.preview-unit {
+    font-size: 11px;
+    color: #64806e;
+}
+
+.formula {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #d8e9dd;
+    font-size: 10px;
+    line-height: 1.5;
+    color: #68806f;
+}
+
+/* DATA CARD */
+
+.data-card {
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.data-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.data-header h2 {
+    font-size: 17px;
+}
+
+/* TOTAL */
+
+.total-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    border-radius: 11px;
+    background: #f8f2e9;
+    border: 1px solid #eadac6;
+    margin-bottom: 15px;
+}
+
+.total-label {
+    font-size: 11px;
+    color: #8a684b;
+}
+
+.total-value {
+    font-size: 27px;
+    font-weight: bold;
+    color: #75431f;
+}
+
+.total-unit {
+    font-size: 11px;
+    color: #8a684b;
+}
+
+/* TABLE */
+
+.table-wrapper {
+    flex: 1;
+    overflow: auto;
+    border: 1px solid #ece9e5;
+    border-radius: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 650px;
+}
+
+th {
+    position: sticky;
+    top: 0;
+    background: #f7f5f2;
+    padding: 11px;
+    text-align: left;
+    font-size: 11px;
+    color: #666;
+    border-bottom: 1px solid #e5e1db;
+}
+
+td {
+    padding: 10px 11px;
+    border-bottom: 1px solid #eee;
+    font-size: 12px;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+.data-number {
+    width: 35px;
+    text-align: center;
+    font-weight: bold;
+    color: #888;
+}
+
+.kubikasi-cell {
+    font-weight: bold;
+    color: #24653d;
+}
+
+/* DELETE */
+
+.delete-btn {
+    height: 30px;
+    padding: 0 9px;
+    background: #fae8e8;
+    color: #c53c3c;
+    font-size: 10px;
+}
+
+.delete-btn:hover {
+    background: #f3d1d1;
+}
+
+/* EMPTY */
+
+.empty {
+    text-align: center;
+    padding: 45px 20px;
+    color: #aaa;
+}
+
+.empty-icon {
+    font-size: 35px;
+    margin-bottom: 8px;
+}
+
+/* BOTTOM BUTTON */
+
+.bottom-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.btn-export {
+    background: #2e6d4a;
+    color: white;
+    padding: 0 15px;
+}
+
+.btn-export:hover {
+    background: #24563b;
+}
+
+.btn-clear {
+    background: #f7e5e5;
+    color: #b53c3c;
+    padding: 0 15px;
+}
+
+.btn-clear:hover {
+    background: #efd0d0;
+}
+
+/* FOOTER */
+
+.footer {
+    text-align: center;
+    color: #999;
+    font-size: 10px;
+    margin-top: 12px;
+}
+
+/* DESKTOP */
+
+@media (min-width: 851px) {
+
+    .main-layout {
+        height: calc(100vh - 135px);
+        min-height: 550px;
+    }
+
+    .data-card {
+        min-height: 0;
+    }
+
+    .table-wrapper {
+        min-height: 0;
+    }
+
+}
+
+/* TABLET */
+
+@media (max-width: 850px) {
+
+    .main-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .data-card {
+        min-height: 500px;
+    }
+
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 12px;
+    }
+
+    .header {
+        margin-bottom: 13px;
+    }
+
+    .logo {
+        width: 43px;
+        height: 43px;
+        font-size: 23px;
+    }
+
+    .header h1 {
+        font-size: 20px;
+    }
+
+    .header p {
+        font-size: 11px;
+    }
+
+    .input-card,
+    .data-card {
+        padding: 16px;
+    }
+
+    .total-box {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 3px;
+    }
+
+    .total-value {
+        font-size: 25px;
+    }
+
+    .bottom-actions {
+        flex-direction: column;
+    }
+
+    .btn-export,
+    .btn-clear {
+        width: 100%;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <div class="logo">
+            🪵
+        </div>
+
+        <div>
+
+            <h1>
+                Kalkulator Kubikasi Kayu
+            </h1>
+
+            <p>
+                Input cepat ukuran kayu dan lihat hasil secara langsung
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- LAYOUT UTAMA -->
+
+    <div class="main-layout">
+
+        <!-- INPUT -->
+
+        <div class="card input-card">
+
+            <div class="section-title">
+
+                <div class="icon">
+                    📐
+                </div>
+
+                <h2>
+                    Input Data Kayu
+                </h2>
+
+            </div>
+
+            <!-- TEBAL -->
+
+            <div class="form-group">
+
+                <label>
+                    Tebal
+                    <span>(cm)</span>
+                </label>
+
+                <select id="tebal">
+
+                    <option value="">
+                        Pilih tebal
+                    </option>
+
+                    <option value="1">
+                        1 cm
+                    </option>
+
+                    <option value="1.2">
+                        1,2 cm
+                    </option>
+
+                    <option value="1.7">
+                        1,7 cm
+                    </option>
+
+                    <option value="2">
+                        2 cm
+                    </option>
+
+                    <option value="2.2">
+                        2,2 cm
+                    </option>
+
+                    <option value="2.5">
+                        2,5 cm
+                    </option>
+
+                    <option value="3">
+                        3 cm
+                    </option>
+
+                </select>
+
+            </div>
+
+            <!-- LEBAR -->
+
+            <div class="form-group">
+
+                <label>
+                    Lebar
+                    <span>(cm)</span>
+                </label>
+
+                <input
+                    type="number"
+                    id="lebar"
+                    placeholder="Contoh: 10"
+                    min="0"
+                    step="0.01"
+                    inputmode="decimal"
+                >
+
+            </div>
+
+            <!-- PANJANG -->
+
+            <div class="form-group">
+
+                <label>
+                    Panjang
+                    <span>(cm)</span>
+                </label>
+
+                <input
+                    type="number"
+                    id="panjang"
+                    placeholder="Contoh: 200"
+                    min="0"
+                    step="0.01"
+                    inputmode="decimal"
+                >
+
+            </div>
+
+            <!-- JUMLAH -->
+
+            <div class="form-group">
+
+                <label>
+                    Jumlah Keping
+                    <span>(pcs)</span>
+                </label>
+
+                <input
+                    type="number"
+                    id="jumlah"
+                    placeholder="Contoh: 50"
+                    min="1"
+                    step="1"
+                    inputmode="numeric"
+                >
+
+            </div>
+
+            <!-- INFO -->
+
+            <div class="quick-info">
+
+                💡 <strong>Input cepat:</strong>
+
+                <br>
+
+                Pilih Tebal → Enter →
+
+                isi Lebar → Enter →
+
+                isi Panjang → Enter →
+
+                isi Jumlah → Enter
+
+                <br>
+
+                Setelah Enter pada Jumlah,
+
+                data otomatis disimpan dan Tebal tetap dipilih.
+
+            </div>
+
+            <!-- BUTTON -->
+
+            <div class="button-area">
+
+                <button
+                    class="btn-add"
+                    onclick="tambahData()">
+
+                    ➕ TAMBAH
+
+                </button>
+
+                <button
+                    class="btn-reset"
+                    onclick="resetSemuaInput()">
+
+                    RESET
+
+                </button>
+
+            </div>
+
+            <!-- PREVIEW -->
+
+            <div class="preview">
+
+                <div class="preview-title">
+                    HASIL DATA SAAT INI
+                </div>
+
+                <div
+                    class="preview-value"
+                    id="preview">
+
+                    0.0000
+
+                </div>
+
+                <div class="preview-unit">
+                    m³
+                </div>
+
+                <div class="formula">
+
+                    <strong>Rumus:</strong>
+
+                    <br>
+
+                    Tebal × Lebar × Panjang × Jumlah
+                    ÷ 1.000.000
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- DATA -->
+
+        <div class="card data-card">
+
+            <div class="data-header">
+
+                <h2>
+                    📋 Data Kubikasi
+                </h2>
+
+            </div>
+
+            <!-- TOTAL -->
+
+            <div class="total-box">
+
+                <div>
+
+                    <div class="total-label">
+                        TOTAL SELURUH KUBIKASI
+                    </div>
+
+                    <div class="total-unit">
+                        Meter Kubik (m³)
+                    </div>
+
+                </div>
+
+                <div
+                    class="total-value"
+                    id="totalKubikasi">
+
+                    0.0000
+
+                </div>
+
+            </div>
+
+            <!-- TABLE -->
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>No</th>
+
+                            <th>Tebal</th>
+
+                            <th>Lebar</th>
+
+                            <th>Panjang</th>
+
+                            <th>Jumlah</th>
+
+                            <th>Kubikasi</th>
+
+                            <th>Aksi</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="dataTable">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <!-- BUTTON BAWAH -->
+
+            <div class="bottom-actions">
+
+                <button
+                    class="btn-export"
+                    onclick="exportCSV()">
+
+                    📥 EXPORT CSV
+
+                </button>
+
+                <button
+                    class="btn-clear"
+                    onclick="hapusSemua()">
+
+                    🗑 HAPUS SEMUA
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="footer">
+
+        🪵 Kalkulator Kubikasi Kayu
+        • Input cm • Hasil m³
+
+    </div>
+
+</div>
+
+<script>
+
+/* =========================
+   DATA
+========================= */
+
+let dataKubikasi =
+    JSON.parse(
+        localStorage.getItem("dataKubikasiKayu")
+    ) || [];
+
+
+/* =========================
+   INPUT
+========================= */
+
+const tebalInput =
+    document.getElementById("tebal");
+
+const lebarInput =
+    document.getElementById("lebar");
+
+const panjangInput =
+    document.getElementById("panjang");
+
+const jumlahInput =
+    document.getElementById("jumlah");
+
+const inputUrutan = [
+
+    tebalInput,
+    lebarInput,
+    panjangInput,
+    jumlahInput
+
+];
+
+
+/* =========================
+   HITUNG KUBIKASI
+========================= */
+
+function hitungKubikasi() {
+
+    const tebal =
+        parseFloat(tebalInput.value);
+
+    const lebar =
+        parseFloat(lebarInput.value);
+
+    const panjang =
+        parseFloat(panjangInput.value);
+
+    const jumlah =
+        parseFloat(jumlahInput.value);
+
+    if (
+        isNaN(tebal) ||
+        isNaN(lebar) ||
+        isNaN(panjang) ||
+        isNaN(jumlah)
+    ) {
+        return null;
+    }
+
+    if (
+        tebal <= 0 ||
+        lebar <= 0 ||
+        panjang <= 0 ||
+        jumlah <= 0
+    ) {
+        return null;
+    }
+
+    return (
+        tebal *
+        lebar *
+        panjang *
+        jumlah
+    ) / 1000000;
+
+}
+
+
+/* =========================
+   TAMBAH DATA
+========================= */
+
+function tambahData() {
+
+    const tebal =
+        parseFloat(tebalInput.value);
+
+    const lebar =
+        parseFloat(lebarInput.value);
+
+    const panjang =
+        parseFloat(panjangInput.value);
+
+    const jumlah =
+        parseFloat(jumlahInput.value);
+
+    if (
+        isNaN(tebal) ||
+        isNaN(lebar) ||
+        isNaN(panjang) ||
+        isNaN(jumlah)
+    ) {
+
+        alert("Mohon isi semua data.");
+
+        return;
+    }
+
+    if (
+        tebal <= 0 ||
+        lebar <= 0 ||
+        panjang <= 0 ||
+        jumlah <= 0
+    ) {
+
+        alert(
+            "Semua nilai harus lebih besar dari 0."
+        );
+
+        return;
+    }
+
+    const kubikasi = (
+
+        tebal *
+        lebar *
+        panjang *
+        jumlah
+
+    ) / 1000000;
+
+    const data = {
+
+        id: Date.now(),
+
+        tebal: tebal,
+
+        lebar: lebar,
+
+        panjang: panjang,
+
+        jumlah: jumlah,
+
+        kubikasi: kubikasi
+
+    };
+
+    dataKubikasi.push(data);
+
+    simpanData();
+
+    renderTable();
+
+    updateTotal();
+
+    /*
+       PENTING:
+       Setelah data masuk,
+       TEBAL TIDAK DIRESET.
+    */
+
+    resetInputSetelahTambah();
+
+    /*
+       Setelah data masuk,
+       fokus kembali ke LEBAR.
+    */
+
+    setTimeout(
+        () => {
+
+            lebarInput.focus();
+
+        },
+        50
+    );
+
+}
+
+
+/* =========================
+   RESET SETELAH TAMBAH
+   TEBAL TETAP
+========================= */
+
+function resetInputSetelahTambah() {
+
+    lebarInput.value = "";
+
+    panjangInput.value = "";
+
+    jumlahInput.value = "";
+
+    document
+        .getElementById("preview")
+        .textContent = "0.0000";
+
+}
+
+
+/* =========================
+   RESET SEMUA
+   TERMASUK TEBAL
+========================= */
+
+function resetSemuaInput() {
+
+    tebalInput.value = "";
+
+    lebarInput.value = "";
+
+    panjangInput.value = "";
+
+    jumlahInput.value = "";
+
+    document
+        .getElementById("preview")
+        .textContent = "0.0000";
+
+    tebalInput.focus();
+
+}
+
+
+/* =========================
+   PREVIEW OTOMATIS
+========================= */
+
+inputUrutan.forEach(
+
+    input => {
+
+        input.addEventListener(
+            "input",
+            function() {
+
+                const hasil =
+                    hitungKubikasi();
+
+                document
+                    .getElementById("preview")
+                    .textContent =
+
+                    hasil !== null
+                        ? hasil.toFixed(4)
+                        : "0.0000";
+
+            }
+        );
+
+    }
+
+);
+
+
+/* =========================
+   ENTER CEPAT
+========================= */
+
+inputUrutan.forEach(
+
+    (input, index) => {
+
+        input.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (
+                    event.key !== "Enter"
+                ) {
+                    return;
+                }
+
+                event.preventDefault();
+
+                /*
+                   VALIDASI
+                */
+
+                if (
+                    input.value.trim() === "" ||
+                    Number(input.value) <= 0
+                ) {
+
+                    input.focus();
+
+                    return;
+
+                }
+
+                /*
+                   PINDAH INPUT
+                */
+
+                if (
+                    index <
+                    inputUrutan.length - 1
+                ) {
+
+                    inputUrutan[
+                        index + 1
+                    ].focus();
+
+                    inputUrutan[
+                        index + 1
+                    ].select();
+
+                }
+
+                /*
+                   JIKA ENTER PADA JUMLAH
+                */
+
+                else {
+
+                    tambahData();
+
+                }
+
+            }
+        );
+
+    }
+
+);
+
+
+/* =========================
+   RENDER TABLE
+========================= */
+
+function renderTable() {
+
+    const table =
+        document.getElementById(
+            "dataTable"
+        );
+
+    table.innerHTML = "";
+
+    if (
+        dataKubikasi.length === 0
+    ) {
+
+        table.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="7"
+                    class="empty">
+
+                    <div class="empty-icon">
+                        🪵
+                    </div>
+
+                    Belum ada data kubikasi.
+
+                    <br>
+
+                    Masukkan ukuran kayu
+                    di sebelah kiri.
+
+                </td>
+
+            </tr>
+
+        `;
+
+        return;
+
+    }
+
+    dataKubikasi.forEach(
+
+        (data, index) => {
+
+            table.innerHTML += `
+
+                <tr>
+
+                    <td
+                        class="data-number">
+
+                        ${index + 1}
+
+                    </td>
+
+                    <td>
+                        ${data.tebal} cm
+                    </td>
+
+                    <td>
+                        ${data.lebar} cm
+                    </td>
+
+                    <td>
+                        ${data.panjang} cm
+                    </td>
+
+                    <td>
+                        ${data.jumlah} pcs
+                    </td>
+
+                    <td
+                        class="kubikasi-cell">
+
+                        ${data.kubikasi.toFixed(4)}
+                        m³
+
+                    </td>
+
+                    <td>
+
+                        <button
+                            class="delete-btn"
+                            onclick="hapusData(${data.id})">
+
+                            🗑 Hapus
+
+                        </button>
+
+                    </td>
+
+                </tr>
+
+            `;
+
+        }
+
+    );
+
+}
+
+
+/* =========================
+   TOTAL
+========================= */
+
+function updateTotal() {
+
+    const total =
+
+        dataKubikasi.reduce(
+
+            (sum, data) =>
+
+                sum +
+                Number(data.kubikasi),
+
+            0
+
+        );
+
+    document
+        .getElementById(
+            "totalKubikasi"
+        )
+        .textContent =
+
+        total.toFixed(4);
+
+}
+
+
+/* =========================
+   HAPUS DATA
+========================= */
+
+function hapusData(id) {
+
+    const yakin =
+        confirm(
+            "Yakin ingin menghapus data ini?"
+        );
+
+    if (!yakin) {
+        return;
+    }
+
+    dataKubikasi =
+
+        dataKubikasi.filter(
+
+            data =>
+                data.id !== id
+
+        );
+
+    simpanData();
+
+    renderTable();
+
+    updateTotal();
+
+}
+
+
+/* =========================
+   HAPUS SEMUA DATA
+========================= */
+
+function hapusSemua() {
+
+    if (
+        dataKubikasi.length === 0
+    ) {
+
+        return;
+
+    }
+
+    const yakin =
+        confirm(
+            "Yakin ingin menghapus SEMUA data?"
+        );
+
+    if (!yakin) {
+
+        return;
+
+    }
+
+    dataKubikasi = [];
+
+    simpanData();
+
+    renderTable();
+
+    updateTotal();
+
+}
+
+
+/* =========================
+   SIMPAN DATA
+========================= */
+
+function simpanData() {
+
+    localStorage.setItem(
+
+        "dataKubikasiKayu",
+
+        JSON.stringify(
+            dataKubikasi
+        )
+
+    );
+
+}
+
+
+/* =========================
+   EXPORT CSV
+========================= */
+
+function exportCSV() {
+
+    if (
+        dataKubikasi.length === 0
+    ) {
+
+        alert(
+            "Belum ada data untuk diexport."
+        );
+
+        return;
+
+    }
+
+    let csv =
+
+        "No,Tebal (cm),Lebar (cm),Panjang (cm),Jumlah (pcs),Kubikasi (m3)\n";
+
+    dataKubikasi.forEach(
+
+        (data, index) => {
+
+            csv +=
+
+                `${index + 1},` +
+                `${data.tebal},` +
+                `${data.lebar},` +
+                `${data.panjang},` +
+                `${data.jumlah},` +
+                `${data.kubikasi.toFixed(4)}\n`;
+
+        }
+
+    );
+
+    const total =
+
+        dataKubikasi.reduce(
+
+            (sum, data) =>
+
+                sum +
+                Number(data.kubikasi),
+
+            0
+
+        );
+
+    csv +=
+
+        `,,,,TOTAL,${total.toFixed(4)}\n`;
+
+    const blob =
+
+        new Blob(
+
+            [csv],
+
+            {
+                type:
+                    "text/csv;charset=utf-8;"
+            }
+
+        );
+
+    const url =
+
+        URL.createObjectURL(
+            blob
+        );
+
+    const link =
+
+        document.createElement(
+            "a"
+        );
+
+    link.href = url;
+
+    link.download =
+        "data_kubikasi_kayu.csv";
+
+    link.click();
+
+    URL.revokeObjectURL(url);
+
+}
+
+
+/* =========================
+   LOAD DATA
+========================= */
+
+renderTable();
+
+updateTotal();
+
+
+/* =========================
+   FOCUS AWAL
+========================= */
+
+window.addEventListener(
+
+    "load",
+
+    function() {
+
+        tebalInput.focus();
+
+    }
+
+);
+
+</script>
+
+</body>
+</html>
+```
