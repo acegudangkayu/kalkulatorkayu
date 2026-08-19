@@ -192,23 +192,48 @@ select {
 }
 
 .select-arrow {
-    width: 26px;
-    height: 26px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #80552f;
-    background: #f1e9df;
-    font-size: 20px;
-    line-height: 1;
-    transform: translateY(-2px);
-    transition: transform .18s ease, background .18s ease;
+    position: relative;
+    width: 20px;
+    height: 20px;
+    flex: 0 0 20px;
+    margin-left: 10px;
+    border-radius: 6px;
+    background: #f2ece5;
+    transition: background .18s ease;
+}
+
+.select-arrow::before,
+.select-arrow::after {
+    content: "";
+    position: absolute;
+    top: 8px;
+    width: 7px;
+    height: 1.8px;
+    border-radius: 2px;
+    background: #80552f;
+    transition: transform .18s ease;
+}
+
+.select-arrow::before {
+    left: 4px;
+    transform: rotate(45deg);
+}
+
+.select-arrow::after {
+    right: 4px;
+    transform: rotate(-45deg);
 }
 
 .custom-select.open .select-arrow {
-    transform: rotate(180deg) translateY(2px);
-    background: #eadbca;
+    background: #eadfd3;
+}
+
+.custom-select.open .select-arrow::before {
+    transform: rotate(-45deg);
+}
+
+.custom-select.open .select-arrow::after {
+    transform: rotate(45deg);
 }
 
 .select-menu {
