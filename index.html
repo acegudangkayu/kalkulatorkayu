@@ -147,6 +147,151 @@ select {
     cursor: pointer;
 }
 
+/* =========================
+   CUSTOM DROPDOWN TEBAL
+========================= */
+
+.custom-select {
+    position: relative;
+    width: 100%;
+}
+
+.select-trigger {
+    width: 100%;
+    height: 46px;
+    padding: 0 13px 0 15px;
+    border: 1px solid #dcd8d2;
+    border-radius: 11px;
+    background: #fafafa;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 500;
+    outline: none;
+    transition: .18s ease;
+}
+
+.select-trigger:hover {
+    border-color: #c9b7a4;
+    background: #fff;
+}
+
+.custom-select.open .select-trigger,
+.select-trigger:focus {
+    background: #fff;
+    border-color: #a66a37;
+    box-shadow: 0 0 0 3px rgba(166,106,55,.10);
+}
+
+.select-value.placeholder {
+    color: #999;
+    font-weight: 400;
+}
+
+.select-arrow {
+    width: 26px;
+    height: 26px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #80552f;
+    background: #f1e9df;
+    font-size: 20px;
+    line-height: 1;
+    transform: translateY(-2px);
+    transition: transform .18s ease, background .18s ease;
+}
+
+.custom-select.open .select-arrow {
+    transform: rotate(180deg) translateY(2px);
+    background: #eadbca;
+}
+
+.select-menu {
+    position: absolute;
+    z-index: 50;
+    left: 0;
+    right: 0;
+    top: calc(100% + 7px);
+    padding: 6px;
+    background: rgba(255,255,255,.98);
+    border: 1px solid #e7e0d8;
+    border-radius: 13px;
+    box-shadow: 0 12px 30px rgba(60,42,26,.13);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-5px) scale(.985);
+    transform-origin: top;
+    transition: opacity .15s ease, transform .15s ease, visibility .15s;
+}
+
+.custom-select.open .select-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+.select-option {
+    width: 100%;
+    height: 40px;
+    padding: 0 11px;
+    border: 0;
+    border-radius: 9px;
+    background: transparent;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: left;
+    transition: .12s ease;
+}
+
+.select-option:hover,
+.select-option.active {
+    background: #f5eee6;
+    color: #75431f;
+}
+
+.select-option.selected {
+    background: #efe4d7;
+    color: #75431f;
+    font-weight: 700;
+}
+
+.option-main {
+    font-size: 15px;
+}
+
+.option-unit {
+    font-size: 11px;
+    color: #9a8b7c;
+    margin-left: auto;
+}
+
+.select-option.selected .option-unit {
+    color: #a06a3a;
+}
+
+/* Dropdown tetap nyaman saat layar kecil */
+@media (max-width: 600px) {
+    .select-menu {
+        top: calc(100% + 5px);
+        padding: 5px;
+        border-radius: 12px;
+    }
+
+    .select-option {
+        height: 42px;
+    }
+}
+
+
 /* INFO */
 
 .quick-info {
@@ -538,41 +683,39 @@ tr:last-child td {
                     <span>(cm)</span>
                 </label>
 
-                <select id="tebal">
+                <div class="custom-select" id="tebalDropdown">
+    <button type="button" class="select-trigger" id="tebalTrigger"
+        aria-haspopup="listbox" aria-expanded="false">
+        <span class="select-value placeholder" id="tebalValue">Pilih tebal</span>
+        <span class="select-arrow">⌄</span>
+    </button>
 
-                    <option value="">
-                        Pilih tebal
-                    </option>
+    <div class="select-menu" id="tebalMenu" role="listbox" aria-label="Pilih tebal">
+        <button type="button" class="select-option" data-value="1" role="option">
+            <span class="option-main">1</span><span class="option-unit">cm</span>
+        </button>
+        <button type="button" class="select-option" data-value="1.2" role="option">
+            <span class="option-main">1,2</span><span class="option-unit">cm</span>
+        </button>
+        <button type="button" class="select-option" data-value="1.7" role="option">
+            <span class="option-main">1,7</span><span class="option-unit">cm</span>
+        </button>
+        <button type="button" class="select-option" data-value="2" role="option">
+            <span class="option-main">2</span><span class="option-unit">cm</span>
+        </button>
+        <button type="button" class="select-option" data-value="2.2" role="option">
+            <span class="option-main">2,2</span><span class="option-unit">cm</span>
+        </button>
+        <button type="button" class="select-option" data-value="2.5" role="option">
+            <span class="option-main">2,5</span><span class="option-unit">cm</span>
+        </button>
+        <button type="button" class="select-option" data-value="3" role="option">
+            <span class="option-main">3</span><span class="option-unit">cm</span>
+        </button>
+    </div>
+</div>
 
-                    <option value="1">
-                        1 cm
-                    </option>
-
-                    <option value="1.2">
-                        1,2 cm
-                    </option>
-
-                    <option value="1.7">
-                        1,7 cm
-                    </option>
-
-                    <option value="2">
-                        2 cm
-                    </option>
-
-                    <option value="2.2">
-                        2,2 cm
-                    </option>
-
-                    <option value="2.5">
-                        2,5 cm
-                    </option>
-
-                    <option value="3">
-                        3 cm
-                    </option>
-
-                </select>
+<input type="hidden" id="tebal" value="">
 
             </div>
 
@@ -853,6 +996,104 @@ const panjangInput =
 const jumlahInput =
     document.getElementById("jumlah");
 
+/* =========================
+   DROPDOWN TEBAL
+========================= */
+
+const tebalDropdown = document.getElementById("tebalDropdown");
+const tebalTrigger = document.getElementById("tebalTrigger");
+const tebalValue = document.getElementById("tebalValue");
+const tebalMenu = document.getElementById("tebalMenu");
+const tebalOptions = tebalMenu.querySelectorAll(".select-option");
+
+function bukaTutupDropdown() {
+    const isOpen = tebalDropdown.classList.toggle("open");
+    tebalTrigger.setAttribute("aria-expanded", isOpen ? "true" : "false");
+}
+
+function tutupDropdown() {
+    tebalDropdown.classList.remove("open");
+    tebalTrigger.setAttribute("aria-expanded", "false");
+}
+
+function pilihTebal(option) {
+    tebalInput.value = option.dataset.value;
+    tebalValue.textContent = option.querySelector(".option-main").textContent + " cm";
+    tebalValue.classList.remove("placeholder");
+
+    tebalOptions.forEach(item => {
+        item.classList.remove("selected");
+        item.setAttribute("aria-selected", "false");
+    });
+
+    option.classList.add("selected");
+    option.setAttribute("aria-selected", "true");
+
+    tutupDropdown();
+
+    const hasil = hitungKubikasi();
+    document.getElementById("preview").textContent =
+        hasil !== null ? hasil.toFixed(4) : "0.0000";
+
+    setTimeout(() => lebarInput.focus(), 50);
+}
+
+tebalTrigger.addEventListener("click", function(event) {
+    event.stopPropagation();
+    bukaTutupDropdown();
+});
+
+tebalOptions.forEach(option => {
+    option.addEventListener("click", function() {
+        pilihTebal(this);
+    });
+});
+
+tebalTrigger.addEventListener("keydown", function(event) {
+    if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        bukaTutupDropdown();
+    }
+
+    if (event.key === "Escape") {
+        tutupDropdown();
+    }
+});
+
+document.addEventListener("click", function(event) {
+    if (!tebalDropdown.contains(event.target)) {
+        tutupDropdown();
+    }
+});
+
+/* Pilih tebal dengan keyboard saat dropdown terbuka */
+tebalTrigger.addEventListener("keydown", function(event) {
+    if (!tebalDropdown.classList.contains("open")) return;
+
+    const current = [...tebalOptions].findIndex(
+        option => option.classList.contains("active")
+    );
+
+    let next = current;
+
+    if (event.key === "ArrowDown") {
+        event.preventDefault();
+        next = current < tebalOptions.length - 1 ? current + 1 : 0;
+    } else if (event.key === "ArrowUp") {
+        event.preventDefault();
+        next = current > 0 ? current - 1 : tebalOptions.length - 1;
+    } else if (event.key === "Enter" && current >= 0) {
+        event.preventDefault();
+        pilihTebal(tebalOptions[current]);
+        return;
+    } else {
+        return;
+    }
+
+    tebalOptions.forEach(option => option.classList.remove("active"));
+    tebalOptions[next].classList.add("active");
+});
+
 const inputUrutan = [
 
     tebalInput,
@@ -1039,6 +1280,12 @@ function resetInputSetelahTambah() {
 function resetSemuaInput() {
 
     tebalInput.value = "";
+    tebalValue.textContent = "Pilih tebal";
+    tebalValue.classList.add("placeholder");
+    tebalOptions.forEach(option => {
+        option.classList.remove("selected", "active");
+        option.setAttribute("aria-selected", "false");
+    });
 
     lebarInput.value = "";
 
