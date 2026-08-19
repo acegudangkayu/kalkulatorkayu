@@ -304,7 +304,9 @@ select {
 }
 
 /* Dropdown tetap nyaman saat layar kecil */
+
 @media (max-width: 600px) {
+
     .select-menu {
         top: calc(100% + 5px);
         padding: 5px;
@@ -314,6 +316,7 @@ select {
     .select-option {
         height: 42px;
     }
+
 }
 
 
@@ -365,6 +368,45 @@ button {
 
 .btn-reset:hover {
     background: #dedede;
+}
+
+/* =========================
+   MODE EDIT
+========================= */
+
+.btn-save-edit {
+    flex: 1;
+    background: #2e6d4a;
+    color: white;
+}
+
+.btn-save-edit:hover {
+    background: #24563b;
+}
+
+.btn-cancel-edit {
+    width: 85px;
+    background: #f7e5e5;
+    color: #b53c3c;
+}
+
+.btn-cancel-edit:hover {
+    background: #efd0d0;
+}
+
+.edit-info {
+    display: none;
+    margin-top: 10px;
+    padding: 9px 11px;
+    border-radius: 8px;
+    background: #fff7e8;
+    border: 1px solid #ead7b5;
+    color: #8a684b;
+    font-size: 11px;
+}
+
+.edit-info.show {
+    display: block;
 }
 
 /* PREVIEW */
@@ -512,6 +554,23 @@ tr:last-child td {
 
 .delete-btn:hover {
     background: #f3d1d1;
+}
+
+/* =========================
+   EDIT BUTTON
+========================= */
+
+.edit-btn {
+    height: 30px;
+    padding: 0 9px;
+    background: #e8f0fa;
+    color: #3c6798;
+    font-size: 10px;
+    margin-right: 4px;
+}
+
+.edit-btn:hover {
+    background: #d6e4f5;
 }
 
 /* EMPTY */
@@ -709,38 +768,110 @@ tr:last-child td {
                 </label>
 
                 <div class="custom-select" id="tebalDropdown">
-    <button type="button" class="select-trigger" id="tebalTrigger"
-        aria-haspopup="listbox" aria-expanded="false">
-        <span class="select-value placeholder" id="tebalValue">Pilih tebal</span>
-        <span class="select-arrow"></span>
-    </button>
 
-    <div class="select-menu" id="tebalMenu" role="listbox" aria-label="Pilih tebal">
-        <button type="button" class="select-option" data-value="1" role="option">
-            <span class="option-main">1</span><span class="option-unit">cm</span>
-        </button>
-        <button type="button" class="select-option" data-value="1.2" role="option">
-            <span class="option-main">1,2</span><span class="option-unit">cm</span>
-        </button>
-        <button type="button" class="select-option" data-value="1.7" role="option">
-            <span class="option-main">1,7</span><span class="option-unit">cm</span>
-        </button>
-        <button type="button" class="select-option" data-value="2" role="option">
-            <span class="option-main">2</span><span class="option-unit">cm</span>
-        </button>
-        <button type="button" class="select-option" data-value="2.2" role="option">
-            <span class="option-main">2,2</span><span class="option-unit">cm</span>
-        </button>
-        <button type="button" class="select-option" data-value="2.5" role="option">
-            <span class="option-main">2,5</span><span class="option-unit">cm</span>
-        </button>
-        <button type="button" class="select-option" data-value="3" role="option">
-            <span class="option-main">3</span><span class="option-unit">cm</span>
-        </button>
-    </div>
-</div>
+                    <button
+                        type="button"
+                        class="select-trigger"
+                        id="tebalTrigger"
+                        aria-haspopup="listbox"
+                        aria-expanded="false">
 
-<input type="hidden" id="tebal" value="">
+                        <span
+                            class="select-value placeholder"
+                            id="tebalValue">
+
+                            Pilih tebal
+
+                        </span>
+
+                        <span class="select-arrow"></span>
+
+                    </button>
+
+                    <div
+                        class="select-menu"
+                        id="tebalMenu"
+                        role="listbox"
+                        aria-label="Pilih tebal">
+
+                        <button type="button"
+                            class="select-option"
+                            data-value="1"
+                            role="option">
+
+                            <span class="option-main">1</span>
+                            <span class="option-unit">cm</span>
+
+                        </button>
+
+                        <button type="button"
+                            class="select-option"
+                            data-value="1.2"
+                            role="option">
+
+                            <span class="option-main">1,2</span>
+                            <span class="option-unit">cm</span>
+
+                        </button>
+
+                        <button type="button"
+                            class="select-option"
+                            data-value="1.7"
+                            role="option">
+
+                            <span class="option-main">1,7</span>
+                            <span class="option-unit">cm</span>
+
+                        </button>
+
+                        <button type="button"
+                            class="select-option"
+                            data-value="2"
+                            role="option">
+
+                            <span class="option-main">2</span>
+                            <span class="option-unit">cm</span>
+
+                        </button>
+
+                        <button type="button"
+                            class="select-option"
+                            data-value="2.2"
+                            role="option">
+
+                            <span class="option-main">2,2</span>
+                            <span class="option-unit">cm</span>
+
+                        </button>
+
+                        <button type="button"
+                            class="select-option"
+                            data-value="2.5"
+                            role="option">
+
+                            <span class="option-main">2,5</span>
+                            <span class="option-unit">cm</span>
+
+                        </button>
+
+                        <button type="button"
+                            class="select-option"
+                            data-value="3"
+                            role="option">
+
+                            <span class="option-main">3</span>
+                            <span class="option-unit">cm</span>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <input
+                    type="hidden"
+                    id="tebal"
+                    value="">
 
             </div>
 
@@ -759,8 +890,7 @@ tr:last-child td {
                     placeholder="Contoh: 10"
                     min="0"
                     step="0.01"
-                    inputmode="decimal"
-                >
+                    inputmode="decimal">
 
             </div>
 
@@ -779,8 +909,7 @@ tr:last-child td {
                     placeholder="Contoh: 200"
                     min="0"
                     step="0.01"
-                    inputmode="decimal"
-                >
+                    inputmode="decimal">
 
             </div>
 
@@ -799,8 +928,7 @@ tr:last-child td {
                     placeholder="Contoh: 50"
                     min="1"
                     step="1"
-                    inputmode="numeric"
-                >
+                    inputmode="numeric">
 
             </div>
 
@@ -828,12 +956,25 @@ tr:last-child td {
 
             </div>
 
+            <!-- INFO EDIT -->
+
+            <div
+                class="edit-info"
+                id="editInfo">
+
+                ✏️ <strong>Mode Edit:</strong>
+                Anda sedang mengubah data yang sudah tersimpan.
+                Tekan SIMPAN PERUBAHAN untuk menyimpan perubahan.
+
+            </div>
+
             <!-- BUTTON -->
 
             <div class="button-area">
 
                 <button
                     class="btn-add"
+                    id="mainActionButton"
                     onclick="tambahData()">
 
                     ➕ TAMBAH
@@ -842,6 +983,7 @@ tr:last-child td {
 
                 <button
                     class="btn-reset"
+                    id="resetButton"
                     onclick="resetSemuaInput()">
 
                     RESET
@@ -1006,6 +1148,18 @@ let dataKubikasi =
 
 
 /* =========================
+   MODE EDIT
+========================= */
+
+/*
+   null = sedang mode tambah
+   ID   = sedang mengedit data
+*/
+
+let editingId = null;
+
+
+/* =========================
    INPUT
 ========================= */
 
@@ -1021,103 +1175,285 @@ const panjangInput =
 const jumlahInput =
     document.getElementById("jumlah");
 
+
+/* =========================
+   ELEMEN MODE EDIT
+========================= */
+
+const mainActionButton =
+    document.getElementById("mainActionButton");
+
+const resetButton =
+    document.getElementById("resetButton");
+
+const editInfo =
+    document.getElementById("editInfo");
+
+
 /* =========================
    DROPDOWN TEBAL
 ========================= */
 
-const tebalDropdown = document.getElementById("tebalDropdown");
-const tebalTrigger = document.getElementById("tebalTrigger");
-const tebalValue = document.getElementById("tebalValue");
-const tebalMenu = document.getElementById("tebalMenu");
-const tebalOptions = tebalMenu.querySelectorAll(".select-option");
+const tebalDropdown =
+    document.getElementById("tebalDropdown");
+
+const tebalTrigger =
+    document.getElementById("tebalTrigger");
+
+const tebalValue =
+    document.getElementById("tebalValue");
+
+const tebalMenu =
+    document.getElementById("tebalMenu");
+
+const tebalOptions =
+    tebalMenu.querySelectorAll(".select-option");
+
 
 function bukaTutupDropdown() {
-    const isOpen = tebalDropdown.classList.toggle("open");
-    tebalTrigger.setAttribute("aria-expanded", isOpen ? "true" : "false");
+
+    const isOpen =
+        tebalDropdown.classList.toggle("open");
+
+    tebalTrigger.setAttribute(
+        "aria-expanded",
+        isOpen ? "true" : "false"
+    );
+
 }
+
 
 function tutupDropdown() {
+
     tebalDropdown.classList.remove("open");
-    tebalTrigger.setAttribute("aria-expanded", "false");
+
+    tebalTrigger.setAttribute(
+        "aria-expanded",
+        "false"
+    );
+
 }
 
+
+/* =========================
+   PILIH TEBAL
+========================= */
+
 function pilihTebal(option) {
-    tebalInput.value = option.dataset.value;
-    tebalValue.textContent = option.querySelector(".option-main").textContent + " cm";
-    tebalValue.classList.remove("placeholder");
+
+    tebalInput.value =
+        option.dataset.value;
+
+    tebalValue.textContent =
+        option.querySelector(".option-main").textContent +
+        " cm";
+
+    tebalValue.classList.remove(
+        "placeholder"
+    );
 
     tebalOptions.forEach(item => {
-        item.classList.remove("selected");
-        item.setAttribute("aria-selected", "false");
+
+        item.classList.remove(
+            "selected"
+        );
+
+        item.setAttribute(
+            "aria-selected",
+            "false"
+        );
+
     });
 
     option.classList.add("selected");
-    option.setAttribute("aria-selected", "true");
+
+    option.setAttribute(
+        "aria-selected",
+        "true"
+    );
 
     tutupDropdown();
 
-    const hasil = hitungKubikasi();
-    document.getElementById("preview").textContent =
-        hasil !== null ? hasil.toFixed(4) : "0.0000";
+    const hasil =
+        hitungKubikasi();
 
-    setTimeout(() => lebarInput.focus(), 50);
+    document.getElementById("preview")
+        .textContent =
+        hasil !== null
+            ? hasil.toFixed(4)
+            : "0.0000";
+
+    setTimeout(() => {
+
+        lebarInput.focus();
+
+    }, 50);
+
 }
 
-tebalTrigger.addEventListener("click", function(event) {
-    event.stopPropagation();
-    bukaTutupDropdown();
-});
+
+/* =========================
+   EVENT DROPDOWN
+========================= */
+
+tebalTrigger.addEventListener(
+    "click",
+    function(event) {
+
+        event.stopPropagation();
+
+        bukaTutupDropdown();
+
+    }
+);
+
 
 tebalOptions.forEach(option => {
-    option.addEventListener("click", function() {
-        pilihTebal(this);
-    });
-});
 
-tebalTrigger.addEventListener("keydown", function(event) {
-    if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        bukaTutupDropdown();
-    }
+    option.addEventListener(
+        "click",
+        function() {
 
-    if (event.key === "Escape") {
-        tutupDropdown();
-    }
-});
+            pilihTebal(this);
 
-document.addEventListener("click", function(event) {
-    if (!tebalDropdown.contains(event.target)) {
-        tutupDropdown();
-    }
-});
-
-/* Pilih tebal dengan keyboard saat dropdown terbuka */
-tebalTrigger.addEventListener("keydown", function(event) {
-    if (!tebalDropdown.classList.contains("open")) return;
-
-    const current = [...tebalOptions].findIndex(
-        option => option.classList.contains("active")
+        }
     );
 
-    let next = current;
-
-    if (event.key === "ArrowDown") {
-        event.preventDefault();
-        next = current < tebalOptions.length - 1 ? current + 1 : 0;
-    } else if (event.key === "ArrowUp") {
-        event.preventDefault();
-        next = current > 0 ? current - 1 : tebalOptions.length - 1;
-    } else if (event.key === "Enter" && current >= 0) {
-        event.preventDefault();
-        pilihTebal(tebalOptions[current]);
-        return;
-    } else {
-        return;
-    }
-
-    tebalOptions.forEach(option => option.classList.remove("active"));
-    tebalOptions[next].classList.add("active");
 });
+
+
+tebalTrigger.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            event.key === "Enter" ||
+            event.key === " "
+        ) {
+
+            event.preventDefault();
+
+            bukaTutupDropdown();
+
+        }
+
+        if (
+            event.key === "Escape"
+        ) {
+
+            tutupDropdown();
+
+        }
+
+    }
+);
+
+
+document.addEventListener(
+    "click",
+    function(event) {
+
+        if (
+            !tebalDropdown.contains(
+                event.target
+            )
+        ) {
+
+            tutupDropdown();
+
+        }
+
+    }
+);
+
+
+/* =========================
+   KEYBOARD DROPDOWN
+========================= */
+
+tebalTrigger.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            !tebalDropdown.classList.contains(
+                "open"
+            )
+        ) {
+            return;
+        }
+
+        const current =
+            [...tebalOptions].findIndex(
+                option =>
+                    option.classList.contains(
+                        "active"
+                    )
+            );
+
+        let next = current;
+
+        if (
+            event.key === "ArrowDown"
+        ) {
+
+            event.preventDefault();
+
+            next =
+                current <
+                tebalOptions.length - 1
+                    ? current + 1
+                    : 0;
+
+        }
+
+        else if (
+            event.key === "ArrowUp"
+        ) {
+
+            event.preventDefault();
+
+            next =
+                current > 0
+                    ? current - 1
+                    : tebalOptions.length - 1;
+
+        }
+
+        else if (
+            event.key === "Enter" &&
+            current >= 0
+        ) {
+
+            event.preventDefault();
+
+            pilihTebal(
+                tebalOptions[current]
+            );
+
+            return;
+
+        }
+
+        else {
+
+            return;
+
+        }
+
+        tebalOptions.forEach(
+            option =>
+                option.classList.remove(
+                    "active"
+                )
+        );
+
+        tebalOptions[next]
+            .classList.add("active");
+
+    }
+);
+
 
 const inputUrutan = [
 
@@ -1136,80 +1472,117 @@ const inputUrutan = [
 function hitungKubikasi() {
 
     const tebal =
-        parseFloat(tebalInput.value);
+        parseFloat(
+            tebalInput.value
+        );
 
     const lebar =
-        parseFloat(lebarInput.value);
+        parseFloat(
+            lebarInput.value
+        );
 
     const panjang =
-        parseFloat(panjangInput.value);
+        parseFloat(
+            panjangInput.value
+        );
 
     const jumlah =
-        parseFloat(jumlahInput.value);
+        parseFloat(
+            jumlahInput.value
+        );
 
     if (
+
         isNaN(tebal) ||
         isNaN(lebar) ||
         isNaN(panjang) ||
         isNaN(jumlah)
+
     ) {
+
         return null;
+
     }
 
     if (
+
         tebal <= 0 ||
         lebar <= 0 ||
         panjang <= 0 ||
         jumlah <= 0
+
     ) {
+
         return null;
+
     }
 
     return (
+
         tebal *
         lebar *
         panjang *
         jumlah
+
     ) / 1000000;
 
 }
 
 
 /* =========================
-   TAMBAH DATA
+   TAMBAH / SIMPAN DATA
 ========================= */
 
 function tambahData() {
 
     const tebal =
-        parseFloat(tebalInput.value);
+        parseFloat(
+            tebalInput.value
+        );
 
     const lebar =
-        parseFloat(lebarInput.value);
+        parseFloat(
+            lebarInput.value
+        );
 
     const panjang =
-        parseFloat(panjangInput.value);
+        parseFloat(
+            panjangInput.value
+        );
 
     const jumlah =
-        parseFloat(jumlahInput.value);
+        parseFloat(
+            jumlahInput.value
+        );
+
+
+    /* VALIDASI */
 
     if (
+
         isNaN(tebal) ||
         isNaN(lebar) ||
         isNaN(panjang) ||
         isNaN(jumlah)
+
     ) {
 
-        alert("Mohon isi semua data.");
+        alert(
+            "Mohon isi semua data."
+        );
 
         return;
+
     }
 
+
     if (
+
         tebal <= 0 ||
         lebar <= 0 ||
         panjang <= 0 ||
         jumlah <= 0
+
     ) {
 
         alert(
@@ -1217,7 +1590,9 @@ function tambahData() {
         );
 
         return;
+
     }
+
 
     const kubikasi = (
 
@@ -1227,6 +1602,66 @@ function tambahData() {
         jumlah
 
     ) / 1000000;
+
+
+    /* =========================
+       JIKA MODE EDIT
+    ========================= */
+
+    if (editingId !== null) {
+
+        const index =
+            dataKubikasi.findIndex(
+                data =>
+                    data.id === editingId
+            );
+
+        if (index !== -1) {
+
+            /*
+               Pertahankan ID lama
+               agar data benar-benar
+               diperbarui, bukan dibuat baru.
+            */
+
+            dataKubikasi[index] = {
+
+                id: editingId,
+
+                tebal: tebal,
+
+                lebar: lebar,
+
+                panjang: panjang,
+
+                jumlah: jumlah,
+
+                kubikasi: kubikasi
+
+            };
+
+        }
+
+        simpanData();
+
+        renderTable();
+
+        updateTotal();
+
+        alert(
+            "Data berhasil diperbarui."
+        );
+
+        keluarModeEdit();
+
+        return;
+
+    }
+
+
+    /* =========================
+       MODE TAMBAH DATA BARU
+    ========================= */
 
     const data = {
 
@@ -1244,6 +1679,7 @@ function tambahData() {
 
     };
 
+
     dataKubikasi.push(data);
 
     simpanData();
@@ -1252,13 +1688,14 @@ function tambahData() {
 
     updateTotal();
 
+
     /*
-       PENTING:
        Setelah data masuk,
        TEBAL TIDAK DIRESET.
     */
 
     resetInputSetelahTambah();
+
 
     /*
        Setelah data masuk,
@@ -1298,19 +1735,52 @@ function resetInputSetelahTambah() {
 
 
 /* =========================
-   RESET SEMUA
+   RESET SEMUA INPUT
    TERMASUK TEBAL
 ========================= */
 
 function resetSemuaInput() {
 
+    /*
+       Jika sedang mode edit,
+       reset juga membatalkan edit.
+    */
+
+    if (editingId !== null) {
+
+        keluarModeEdit();
+
+        return;
+
+    }
+
+
     tebalInput.value = "";
-    tebalValue.textContent = "Pilih tebal";
-    tebalValue.classList.add("placeholder");
-    tebalOptions.forEach(option => {
-        option.classList.remove("selected", "active");
-        option.setAttribute("aria-selected", "false");
-    });
+
+    tebalValue.textContent =
+        "Pilih tebal";
+
+    tebalValue.classList.add(
+        "placeholder"
+    );
+
+
+    tebalOptions.forEach(
+        option => {
+
+            option.classList.remove(
+                "selected",
+                "active"
+            );
+
+            option.setAttribute(
+                "aria-selected",
+                "false"
+            );
+
+        }
+    );
+
 
     lebarInput.value = "";
 
@@ -1318,11 +1788,308 @@ function resetSemuaInput() {
 
     jumlahInput.value = "";
 
+
     document
         .getElementById("preview")
         .textContent = "0.0000";
 
+
     tebalInput.focus();
+
+}
+
+
+/* =========================
+   MASUK MODE EDIT
+========================= */
+
+function editData(id) {
+
+    const data =
+        dataKubikasi.find(
+            item =>
+                item.id === id
+        );
+
+    if (!data) {
+
+        return;
+
+    }
+
+
+    /*
+       Simpan ID yang sedang diedit
+    */
+
+    editingId = id;
+
+
+    /*
+       Isi semua input
+    */
+
+    tebalInput.value =
+        data.tebal;
+
+    lebarInput.value =
+        data.lebar;
+
+    panjangInput.value =
+        data.panjang;
+
+    jumlahInput.value =
+        data.jumlah;
+
+
+    /*
+       Set dropdown tebal
+       tanpa membuka dropdown
+    */
+
+    const option =
+        [...tebalOptions].find(
+            item =>
+                parseFloat(
+                    item.dataset.value
+                ) === Number(data.tebal)
+        );
+
+
+    tebalOptions.forEach(
+        item => {
+
+            item.classList.remove(
+                "selected",
+                "active"
+            );
+
+            item.setAttribute(
+                "aria-selected",
+                "false"
+            );
+
+        }
+    );
+
+
+    if (option) {
+
+        tebalValue.textContent =
+            option.querySelector(
+                ".option-main"
+            ).textContent +
+            " cm";
+
+        tebalValue.classList.remove(
+            "placeholder"
+        );
+
+        option.classList.add(
+            "selected"
+        );
+
+        option.setAttribute(
+            "aria-selected",
+            "true"
+        );
+
+    }
+
+
+    /*
+       Update preview
+    */
+
+    const hasil =
+        hitungKubikasi();
+
+    document
+        .getElementById("preview")
+        .textContent =
+        hasil !== null
+            ? hasil.toFixed(4)
+            : "0.0000";
+
+
+    /*
+       Ubah tombol
+    */
+
+    mainActionButton.classList.remove(
+        "btn-add"
+    );
+
+    mainActionButton.classList.add(
+        "btn-save-edit"
+    );
+
+    mainActionButton.innerHTML =
+        "💾 SIMPAN PERUBAHAN";
+
+
+    /*
+       Tombol RESET berubah menjadi BATAL
+    */
+
+    resetButton.classList.remove(
+        "btn-reset"
+    );
+
+    resetButton.classList.add(
+        "btn-cancel-edit"
+    );
+
+    resetButton.innerHTML =
+        "BATAL";
+
+
+    /*
+       Tampilkan informasi edit
+    */
+
+    editInfo.classList.add(
+        "show"
+    );
+
+
+    /*
+       Scroll ke form
+    */
+
+    document
+        .querySelector(".input-card")
+        .scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+
+    /*
+       Fokus ke Lebar agar mudah diedit
+    */
+
+    setTimeout(
+        () => {
+
+            lebarInput.focus();
+
+            lebarInput.select();
+
+        },
+        300
+    );
+
+}
+
+
+/* =========================
+   KELUAR MODE EDIT
+========================= */
+
+function keluarModeEdit() {
+
+    editingId = null;
+
+
+    /*
+       Kembalikan tombol utama
+    */
+
+    mainActionButton.classList.remove(
+        "btn-save-edit"
+    );
+
+    mainActionButton.classList.add(
+        "btn-add"
+    );
+
+    mainActionButton.innerHTML =
+        "➕ TAMBAH";
+
+
+    /*
+       Kembalikan tombol reset
+    */
+
+    resetButton.classList.remove(
+        "btn-cancel-edit"
+    );
+
+    resetButton.classList.add(
+        "btn-reset"
+    );
+
+    resetButton.innerHTML =
+        "RESET";
+
+
+    /*
+       Sembunyikan info edit
+    */
+
+    editInfo.classList.remove(
+        "show"
+    );
+
+
+    /*
+       Kosongkan input
+       tetapi tidak menghapus data tabel
+    */
+
+    tebalInput.value = "";
+
+    tebalValue.textContent =
+        "Pilih tebal";
+
+    tebalValue.classList.add(
+        "placeholder"
+    );
+
+
+    tebalOptions.forEach(
+        option => {
+
+            option.classList.remove(
+                "selected",
+                "active"
+            );
+
+            option.setAttribute(
+                "aria-selected",
+                "false"
+            );
+
+        }
+    );
+
+
+    lebarInput.value = "";
+
+    panjangInput.value = "";
+
+    jumlahInput.value = "";
+
+
+    document
+        .getElementById("preview")
+        .textContent =
+        "0.0000";
+
+
+    /*
+       Fokus kembali ke tebal
+    */
+
+    setTimeout(
+        () => {
+
+            tebalTrigger.focus();
+
+        },
+        50
+    );
 
 }
 
@@ -1373,18 +2140,23 @@ inputUrutan.forEach(
                 if (
                     event.key !== "Enter"
                 ) {
+
                     return;
+
                 }
 
                 event.preventDefault();
+
 
                 /*
                    VALIDASI
                 */
 
                 if (
+
                     input.value.trim() === "" ||
                     Number(input.value) <= 0
+
                 ) {
 
                     input.focus();
@@ -1393,13 +2165,16 @@ inputUrutan.forEach(
 
                 }
 
+
                 /*
                    PINDAH INPUT
                 */
 
                 if (
+
                     index <
                     inputUrutan.length - 1
+
                 ) {
 
                     inputUrutan[
@@ -1411,6 +2186,7 @@ inputUrutan.forEach(
                     ].select();
 
                 }
+
 
                 /*
                    JIKA ENTER PADA JUMLAH
@@ -1442,6 +2218,7 @@ function renderTable() {
         );
 
     table.innerHTML = "";
+
 
     if (
         dataKubikasi.length === 0
@@ -1475,6 +2252,7 @@ function renderTable() {
         return;
 
     }
+
 
     dataKubikasi.forEach(
 
@@ -1518,6 +2296,14 @@ function renderTable() {
                     <td>
 
                         <button
+                            class="edit-btn"
+                            onclick="editData(${data.id})">
+
+                            ✏️ Edit
+
+                        </button>
+
+                        <button
                             class="delete-btn"
                             onclick="hapusData(${data.id})">
 
@@ -1557,6 +2343,7 @@ function updateTotal() {
 
         );
 
+
     document
         .getElementById(
             "totalKubikasi"
@@ -1574,14 +2361,30 @@ function updateTotal() {
 
 function hapusData(id) {
 
+    /*
+       Jika data yang akan dihapus
+       sedang diedit, batalkan mode edit
+    */
+
+    if (editingId === id) {
+
+        keluarModeEdit();
+
+    }
+
+
     const yakin =
         confirm(
             "Yakin ingin menghapus data ini?"
         );
 
+
     if (!yakin) {
+
         return;
+
     }
+
 
     dataKubikasi =
 
@@ -1591,6 +2394,7 @@ function hapusData(id) {
                 data.id !== id
 
         );
+
 
     simpanData();
 
@@ -1615,10 +2419,12 @@ function hapusSemua() {
 
     }
 
+
     const yakin =
         confirm(
             "Yakin ingin menghapus SEMUA data?"
         );
+
 
     if (!yakin) {
 
@@ -1626,7 +2432,21 @@ function hapusSemua() {
 
     }
 
+
     dataKubikasi = [];
+
+
+    /*
+       Jika sedang mode edit,
+       batalkan juga.
+    */
+
+    if (editingId !== null) {
+
+        keluarModeEdit();
+
+    }
+
 
     simpanData();
 
@@ -1674,9 +2494,11 @@ function exportCSV() {
 
     }
 
+
     let csv =
 
         "No,Tebal (cm),Lebar (cm),Panjang (cm),Jumlah (pcs),Kubikasi (m3)\n";
+
 
     dataKubikasi.forEach(
 
@@ -1695,6 +2517,7 @@ function exportCSV() {
 
     );
 
+
     const total =
 
         dataKubikasi.reduce(
@@ -1708,9 +2531,11 @@ function exportCSV() {
 
         );
 
+
     csv +=
 
         `,,,,TOTAL,${total.toFixed(4)}\n`;
+
 
     const blob =
 
@@ -1725,11 +2550,13 @@ function exportCSV() {
 
         );
 
+
     const url =
 
         URL.createObjectURL(
             blob
         );
+
 
     const link =
 
@@ -1737,12 +2564,15 @@ function exportCSV() {
             "a"
         );
 
+
     link.href = url;
 
     link.download =
         "data_kubikasi_kayu.csv";
 
+
     link.click();
+
 
     URL.revokeObjectURL(url);
 
@@ -1778,4 +2608,3 @@ window.addEventListener(
 
 </body>
 </html>
-```
