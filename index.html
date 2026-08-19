@@ -251,7 +251,10 @@ select {
     visibility: hidden;
     transform: translateY(-5px) scale(.985);
     transform-origin: top;
-    transition: opacity .15s ease, transform .15s ease, visibility .15s;
+    transition:
+        opacity .15s ease,
+        transform .15s ease,
+        visibility .15s;
 }
 
 .custom-select.open .select-menu {
@@ -303,8 +306,6 @@ select {
     color: #a06a3a;
 }
 
-/* Dropdown tetap nyaman saat layar kecil */
-
 @media (max-width: 600px) {
 
     .select-menu {
@@ -331,6 +332,7 @@ select {
     line-height: 1.5;
     color: #777;
 }
+
 
 /* BUTTON INPUT */
 
@@ -369,6 +371,7 @@ button {
 .btn-reset:hover {
     background: #dedede;
 }
+
 
 /* =========================
    MODE EDIT
@@ -409,7 +412,10 @@ button {
     display: block;
 }
 
-/* PREVIEW */
+
+/* =========================
+   PREVIEW
+========================= */
 
 .preview {
     margin-top: 15px;
@@ -445,6 +451,7 @@ button {
     color: #68806f;
 }
 
+
 /* DATA CARD */
 
 .data-card {
@@ -464,6 +471,7 @@ button {
 .data-header h2 {
     font-size: 17px;
 }
+
 
 /* TOTAL */
 
@@ -494,6 +502,7 @@ button {
     color: #8a684b;
 }
 
+
 /* TABLE */
 
 .table-wrapper {
@@ -518,6 +527,7 @@ th {
     font-size: 11px;
     color: #666;
     border-bottom: 1px solid #e5e1db;
+    z-index: 2;
 }
 
 td {
@@ -542,19 +552,6 @@ tr:last-child td {
     color: #24653d;
 }
 
-/* DELETE */
-
-.delete-btn {
-    height: 30px;
-    padding: 0 9px;
-    background: #fae8e8;
-    color: #c53c3c;
-    font-size: 10px;
-}
-
-.delete-btn:hover {
-    background: #f3d1d1;
-}
 
 /* =========================
    EDIT BUTTON
@@ -573,6 +570,105 @@ tr:last-child td {
     background: #d6e4f5;
 }
 
+
+/* =========================
+   DELETE
+========================= */
+
+.delete-btn {
+    height: 30px;
+    padding: 0 9px;
+    background: #fae8e8;
+    color: #c53c3c;
+    font-size: 10px;
+}
+
+.delete-btn:hover {
+    background: #f3d1d1;
+}
+
+
+/* =========================
+   ANIMASI BARIS SEDANG EDIT
+========================= */
+
+tr.editing-row {
+    position: relative;
+    background: #fff8ed;
+    box-shadow:
+        inset 4px 0 0 #a66a37;
+    animation:
+        editRowPulse 1.6s ease-in-out infinite;
+}
+
+tr.editing-row td {
+    background: #fff8ed;
+    transition: background .2s ease;
+}
+
+tr.editing-row td:first-child {
+    font-weight: bold;
+    color: #a66a37;
+}
+
+
+/* Animasi cahaya baris */
+
+@keyframes editRowPulse {
+
+    0% {
+
+        box-shadow:
+            inset 4px 0 0 #a66a37,
+            0 0 0 rgba(166,106,55,0);
+
+    }
+
+    50% {
+
+        box-shadow:
+            inset 4px 0 0 #a66a37,
+            0 0 14px rgba(166,106,55,.20);
+
+    }
+
+    100% {
+
+        box-shadow:
+            inset 4px 0 0 #a66a37,
+            0 0 0 rgba(166,106,55,0);
+
+    }
+
+}
+
+
+/* Tombol sedang edit */
+
+.edit-btn.editing {
+    background: #80552f;
+    color: white;
+    animation:
+        editButtonPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes editButtonPulse {
+
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.04);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+
+}
+
+
 /* EMPTY */
 
 .empty {
@@ -585,6 +681,7 @@ tr:last-child td {
     font-size: 35px;
     margin-bottom: 8px;
 }
+
 
 /* BOTTOM BUTTON */
 
@@ -615,6 +712,7 @@ tr:last-child td {
     background: #efd0d0;
 }
 
+
 /* FOOTER */
 
 .footer {
@@ -623,6 +721,7 @@ tr:last-child td {
     font-size: 10px;
     margin-top: 12px;
 }
+
 
 /* DESKTOP */
 
@@ -643,6 +742,7 @@ tr:last-child td {
 
 }
 
+
 /* TABLET */
 
 @media (max-width: 850px) {
@@ -656,6 +756,7 @@ tr:last-child td {
     }
 
 }
+
 
 /* MOBILE */
 
@@ -738,11 +839,15 @@ tr:last-child td {
 
     </div>
 
+
     <!-- LAYOUT UTAMA -->
 
     <div class="main-layout">
 
-        <!-- INPUT -->
+
+        <!-- =========================
+             INPUT
+        ========================= -->
 
         <div class="card input-card">
 
@@ -758,6 +863,7 @@ tr:last-child td {
 
             </div>
 
+
             <!-- TEBAL -->
 
             <div class="form-group">
@@ -767,7 +873,9 @@ tr:last-child td {
                     <span>(cm)</span>
                 </label>
 
-                <div class="custom-select" id="tebalDropdown">
+                <div
+                    class="custom-select"
+                    id="tebalDropdown">
 
                     <button
                         type="button"
@@ -788,85 +896,137 @@ tr:last-child td {
 
                     </button>
 
+
                     <div
                         class="select-menu"
                         id="tebalMenu"
                         role="listbox"
                         aria-label="Pilih tebal">
 
-                        <button type="button"
+
+                        <button
+                            type="button"
                             class="select-option"
                             data-value="1"
                             role="option">
 
-                            <span class="option-main">1</span>
-                            <span class="option-unit">cm</span>
+                            <span class="option-main">
+                                1
+                            </span>
+
+                            <span class="option-unit">
+                                cm
+                            </span>
 
                         </button>
 
-                        <button type="button"
+
+                        <button
+                            type="button"
                             class="select-option"
                             data-value="1.2"
                             role="option">
 
-                            <span class="option-main">1,2</span>
-                            <span class="option-unit">cm</span>
+                            <span class="option-main">
+                                1,2
+                            </span>
+
+                            <span class="option-unit">
+                                cm
+                            </span>
 
                         </button>
 
-                        <button type="button"
+
+                        <button
+                            type="button"
                             class="select-option"
                             data-value="1.7"
                             role="option">
 
-                            <span class="option-main">1,7</span>
-                            <span class="option-unit">cm</span>
+                            <span class="option-main">
+                                1,7
+                            </span>
+
+                            <span class="option-unit">
+                                cm
+                            </span>
 
                         </button>
 
-                        <button type="button"
+
+                        <button
+                            type="button"
                             class="select-option"
                             data-value="2"
                             role="option">
 
-                            <span class="option-main">2</span>
-                            <span class="option-unit">cm</span>
+                            <span class="option-main">
+                                2
+                            </span>
+
+                            <span class="option-unit">
+                                cm
+                            </span>
 
                         </button>
 
-                        <button type="button"
+
+                        <button
+                            type="button"
                             class="select-option"
                             data-value="2.2"
                             role="option">
 
-                            <span class="option-main">2,2</span>
-                            <span class="option-unit">cm</span>
+                            <span class="option-main">
+                                2,2
+                            </span>
+
+                            <span class="option-unit">
+                                cm
+                            </span>
 
                         </button>
 
-                        <button type="button"
+
+                        <button
+                            type="button"
                             class="select-option"
                             data-value="2.5"
                             role="option">
 
-                            <span class="option-main">2,5</span>
-                            <span class="option-unit">cm</span>
+                            <span class="option-main">
+                                2,5
+                            </span>
+
+                            <span class="option-unit">
+                                cm
+                            </span>
 
                         </button>
 
-                        <button type="button"
+
+                        <button
+                            type="button"
                             class="select-option"
                             data-value="3"
                             role="option">
 
-                            <span class="option-main">3</span>
-                            <span class="option-unit">cm</span>
+                            <span class="option-main">
+                                3
+                            </span>
+
+                            <span class="option-unit">
+                                cm
+                            </span>
 
                         </button>
+
 
                     </div>
 
                 </div>
+
 
                 <input
                     type="hidden"
@@ -874,6 +1034,7 @@ tr:last-child td {
                     value="">
 
             </div>
+
 
             <!-- LEBAR -->
 
@@ -894,6 +1055,7 @@ tr:last-child td {
 
             </div>
 
+
             <!-- PANJANG -->
 
             <div class="form-group">
@@ -913,6 +1075,7 @@ tr:last-child td {
 
             </div>
 
+
             <!-- JUMLAH -->
 
             <div class="form-group">
@@ -931,6 +1094,7 @@ tr:last-child td {
                     inputmode="numeric">
 
             </div>
+
 
             <!-- INFO -->
 
@@ -956,6 +1120,7 @@ tr:last-child td {
 
             </div>
 
+
             <!-- INFO EDIT -->
 
             <div
@@ -963,10 +1128,15 @@ tr:last-child td {
                 id="editInfo">
 
                 ✏️ <strong>Mode Edit:</strong>
-                Anda sedang mengubah data yang sudah tersimpan.
-                Tekan SIMPAN PERUBAHAN untuk menyimpan perubahan.
+
+                Anda sedang mengubah data
+                yang sudah tersimpan.
+
+                Tekan SIMPAN PERUBAHAN
+                untuk menyimpan perubahan.
 
             </div>
+
 
             <!-- BUTTON -->
 
@@ -981,6 +1151,7 @@ tr:last-child td {
 
                 </button>
 
+
                 <button
                     class="btn-reset"
                     id="resetButton"
@@ -991,6 +1162,7 @@ tr:last-child td {
                 </button>
 
             </div>
+
 
             <!-- PREVIEW -->
 
@@ -1027,7 +1199,10 @@ tr:last-child td {
 
         </div>
 
-        <!-- DATA -->
+
+        <!-- =========================
+             DATA
+        ========================= -->
 
         <div class="card data-card">
 
@@ -1038,6 +1213,7 @@ tr:last-child td {
                 </h2>
 
             </div>
+
 
             <!-- TOTAL -->
 
@@ -1055,6 +1231,7 @@ tr:last-child td {
 
                 </div>
 
+
                 <div
                     class="total-value"
                     id="totalKubikasi">
@@ -1064,6 +1241,7 @@ tr:last-child td {
                 </div>
 
             </div>
+
 
             <!-- TABLE -->
 
@@ -1075,30 +1253,48 @@ tr:last-child td {
 
                         <tr>
 
-                            <th>No</th>
+                            <th>
+                                No
+                            </th>
 
-                            <th>Tebal</th>
+                            <th>
+                                Tebal
+                            </th>
 
-                            <th>Lebar</th>
+                            <th>
+                                Lebar
+                            </th>
 
-                            <th>Panjang</th>
+                            <th>
+                                Panjang
+                            </th>
 
-                            <th>Jumlah</th>
+                            <th>
+                                Jumlah
+                            </th>
 
-                            <th>Kubikasi</th>
+                            <th>
+                                Kubikasi
+                            </th>
 
-                            <th>Aksi</th>
+                            <th>
+                                Aksi
+                            </th>
 
                         </tr>
 
                     </thead>
 
-                    <tbody id="dataTable">
+
+                    <tbody
+                        id="dataTable">
+
                     </tbody>
 
                 </table>
 
             </div>
+
 
             <!-- BUTTON BAWAH -->
 
@@ -1111,6 +1307,7 @@ tr:last-child td {
                     📥 EXPORT CSV
 
                 </button>
+
 
                 <button
                     class="btn-clear"
@@ -1126,6 +1323,7 @@ tr:last-child td {
 
     </div>
 
+
     <div class="footer">
 
         🪵 Kalkulator Kubikasi Kayu
@@ -1135,6 +1333,7 @@ tr:last-child td {
 
 </div>
 
+
 <script>
 
 /* =========================
@@ -1143,18 +1342,15 @@ tr:last-child td {
 
 let dataKubikasi =
     JSON.parse(
-        localStorage.getItem("dataKubikasiKayu")
+        localStorage.getItem(
+            "dataKubikasiKayu"
+        )
     ) || [];
 
 
 /* =========================
    MODE EDIT
 ========================= */
-
-/*
-   null = sedang mode tambah
-   ID   = sedang mengedit data
-*/
 
 let editingId = null;
 
@@ -1164,60 +1360,92 @@ let editingId = null;
 ========================= */
 
 const tebalInput =
-    document.getElementById("tebal");
+    document.getElementById(
+        "tebal"
+    );
 
 const lebarInput =
-    document.getElementById("lebar");
+    document.getElementById(
+        "lebar"
+    );
 
 const panjangInput =
-    document.getElementById("panjang");
+    document.getElementById(
+        "panjang"
+    );
 
 const jumlahInput =
-    document.getElementById("jumlah");
+    document.getElementById(
+        "jumlah"
+    );
 
 
 /* =========================
-   ELEMEN MODE EDIT
+   ELEMEN EDIT
 ========================= */
 
 const mainActionButton =
-    document.getElementById("mainActionButton");
+    document.getElementById(
+        "mainActionButton"
+    );
 
 const resetButton =
-    document.getElementById("resetButton");
+    document.getElementById(
+        "resetButton"
+    );
 
 const editInfo =
-    document.getElementById("editInfo");
+    document.getElementById(
+        "editInfo"
+    );
 
 
 /* =========================
-   DROPDOWN TEBAL
+   DROPDOWN
 ========================= */
 
 const tebalDropdown =
-    document.getElementById("tebalDropdown");
+    document.getElementById(
+        "tebalDropdown"
+    );
 
 const tebalTrigger =
-    document.getElementById("tebalTrigger");
+    document.getElementById(
+        "tebalTrigger"
+    );
 
 const tebalValue =
-    document.getElementById("tebalValue");
+    document.getElementById(
+        "tebalValue"
+    );
 
 const tebalMenu =
-    document.getElementById("tebalMenu");
+    document.getElementById(
+        "tebalMenu"
+    );
 
 const tebalOptions =
-    tebalMenu.querySelectorAll(".select-option");
+    tebalMenu.querySelectorAll(
+        ".select-option"
+    );
 
+
+/* =========================
+   BUKA / TUTUP DROPDOWN
+========================= */
 
 function bukaTutupDropdown() {
 
     const isOpen =
-        tebalDropdown.classList.toggle("open");
+        tebalDropdown.classList.toggle(
+            "open"
+        );
 
     tebalTrigger.setAttribute(
         "aria-expanded",
-        isOpen ? "true" : "false"
+        isOpen
+            ? "true"
+            : "false"
     );
 
 }
@@ -1225,7 +1453,9 @@ function bukaTutupDropdown() {
 
 function tutupDropdown() {
 
-    tebalDropdown.classList.remove("open");
+    tebalDropdown.classList.remove(
+        "open"
+    );
 
     tebalTrigger.setAttribute(
         "aria-expanded",
@@ -1244,50 +1474,60 @@ function pilihTebal(option) {
     tebalInput.value =
         option.dataset.value;
 
+
     tebalValue.textContent =
-        option.querySelector(".option-main").textContent +
+        option.querySelector(
+            ".option-main"
+        ).textContent +
         " cm";
+
 
     tebalValue.classList.remove(
         "placeholder"
     );
 
-    tebalOptions.forEach(item => {
 
-        item.classList.remove(
-            "selected"
-        );
+    tebalOptions.forEach(
+        item => {
 
-        item.setAttribute(
-            "aria-selected",
-            "false"
-        );
+            item.classList.remove(
+                "selected"
+            );
 
-    });
+            item.setAttribute(
+                "aria-selected",
+                "false"
+            );
 
-    option.classList.add("selected");
+        }
+    );
+
+
+    option.classList.add(
+        "selected"
+    );
+
 
     option.setAttribute(
         "aria-selected",
         "true"
     );
 
+
     tutupDropdown();
 
-    const hasil =
-        hitungKubikasi();
 
-    document.getElementById("preview")
-        .textContent =
-        hasil !== null
-            ? hasil.toFixed(4)
-            : "0.0000";
+    updatePreview();
 
-    setTimeout(() => {
 
-        lebarInput.focus();
+    setTimeout(
+        () => {
 
-    }, 50);
+            lebarInput.focus();
+
+        },
+        50
+    );
 
 }
 
@@ -1308,18 +1548,20 @@ tebalTrigger.addEventListener(
 );
 
 
-tebalOptions.forEach(option => {
+tebalOptions.forEach(
+    option => {
 
-    option.addEventListener(
-        "click",
-        function() {
+        option.addEventListener(
+            "click",
+            function() {
 
-            pilihTebal(this);
+                pilihTebal(this);
 
-        }
-    );
+            }
+        );
 
-});
+    }
+);
 
 
 tebalTrigger.addEventListener(
@@ -1327,8 +1569,10 @@ tebalTrigger.addEventListener(
     function(event) {
 
         if (
+
             event.key === "Enter" ||
             event.key === " "
+
         ) {
 
             event.preventDefault();
@@ -1336,6 +1580,7 @@ tebalTrigger.addEventListener(
             bukaTutupDropdown();
 
         }
+
 
         if (
             event.key === "Escape"
@@ -1380,8 +1625,11 @@ tebalTrigger.addEventListener(
                 "open"
             )
         ) {
+
             return;
+
         }
+
 
         const current =
             [...tebalOptions].findIndex(
@@ -1391,7 +1639,9 @@ tebalTrigger.addEventListener(
                     )
             );
 
+
         let next = current;
+
 
         if (
             event.key === "ArrowDown"
@@ -1407,6 +1657,7 @@ tebalTrigger.addEventListener(
 
         }
 
+
         else if (
             event.key === "ArrowUp"
         ) {
@@ -1419,6 +1670,7 @@ tebalTrigger.addEventListener(
                     : tebalOptions.length - 1;
 
         }
+
 
         else if (
             event.key === "Enter" &&
@@ -1435,11 +1687,13 @@ tebalTrigger.addEventListener(
 
         }
 
+
         else {
 
             return;
 
         }
+
 
         tebalOptions.forEach(
             option =>
@@ -1448,12 +1702,19 @@ tebalTrigger.addEventListener(
                 )
         );
 
+
         tebalOptions[next]
-            .classList.add("active");
+            .classList.add(
+                "active"
+            );
 
     }
 );
 
+
+/* =========================
+   URUTAN INPUT
+========================= */
 
 const inputUrutan = [
 
@@ -1491,6 +1752,7 @@ function hitungKubikasi() {
             jumlahInput.value
         );
 
+
     if (
 
         isNaN(tebal) ||
@@ -1503,6 +1765,7 @@ function hitungKubikasi() {
         return null;
 
     }
+
 
     if (
 
@@ -1517,6 +1780,7 @@ function hitungKubikasi() {
 
     }
 
+
     return (
 
         tebal *
@@ -1530,7 +1794,30 @@ function hitungKubikasi() {
 
 
 /* =========================
-   TAMBAH / SIMPAN DATA
+   PREVIEW
+========================= */
+
+function updatePreview() {
+
+    const hasil =
+        hitungKubikasi();
+
+
+    document
+        .getElementById(
+            "preview"
+        )
+        .textContent =
+
+        hasil !== null
+            ? hasil.toFixed(4)
+            : "0.0000";
+
+}
+
+
+/* =========================
+   TAMBAH DATA
 ========================= */
 
 function tambahData() {
@@ -1555,8 +1842,6 @@ function tambahData() {
             jumlahInput.value
         );
 
-
-    /* VALIDASI */
 
     if (
 
@@ -1605,10 +1890,12 @@ function tambahData() {
 
 
     /* =========================
-       JIKA MODE EDIT
+       MODE EDIT
     ========================= */
 
-    if (editingId !== null) {
+    if (
+        editingId !== null
+    ) {
 
         const index =
             dataKubikasi.findIndex(
@@ -1616,13 +1903,10 @@ function tambahData() {
                     data.id === editingId
             );
 
-        if (index !== -1) {
 
-            /*
-               Pertahankan ID lama
-               agar data benar-benar
-               diperbarui, bukan dibuat baru.
-            */
+        if (
+            index !== -1
+        ) {
 
             dataKubikasi[index] = {
 
@@ -1642,15 +1926,58 @@ function tambahData() {
 
         }
 
+
         simpanData();
+
+        /*
+           Simpan ID terlebih dahulu
+           untuk animasi selesai edit
+        */
+
+        const idSelesaiEdit =
+            editingId;
+
 
         renderTable();
 
         updateTotal();
 
+
+        /*
+           Animasi singkat setelah
+           data berhasil diperbarui
+        */
+
+        setTimeout(
+            () => {
+
+                const row =
+                    document.getElementById(
+                        "row-" +
+                        idSelesaiEdit
+                    );
+
+                if (row) {
+
+                    row.style.animation =
+                        "none";
+
+                    row.offsetHeight;
+
+                    row.style.animation =
+                        "editRowSuccess .7s ease";
+
+                }
+
+            },
+            50
+        );
+
+
         alert(
             "Data berhasil diperbarui."
         );
+
 
         keluarModeEdit();
 
@@ -1660,7 +1987,7 @@ function tambahData() {
 
 
     /* =========================
-       MODE TAMBAH DATA BARU
+       DATA BARU
     ========================= */
 
     const data = {
@@ -1680,7 +2007,10 @@ function tambahData() {
     };
 
 
-    dataKubikasi.push(data);
+    dataKubikasi.push(
+        data
+    );
+
 
     simpanData();
 
@@ -1690,17 +2020,11 @@ function tambahData() {
 
 
     /*
-       Setelah data masuk,
-       TEBAL TIDAK DIRESET.
+       TEBAL TETAP
     */
 
     resetInputSetelahTambah();
 
-
-    /*
-       Setelah data masuk,
-       fokus kembali ke LEBAR.
-    */
 
     setTimeout(
         () => {
@@ -1716,7 +2040,6 @@ function tambahData() {
 
 /* =========================
    RESET SETELAH TAMBAH
-   TEBAL TETAP
 ========================= */
 
 function resetInputSetelahTambah() {
@@ -1728,25 +2051,24 @@ function resetInputSetelahTambah() {
     jumlahInput.value = "";
 
     document
-        .getElementById("preview")
-        .textContent = "0.0000";
+        .getElementById(
+            "preview"
+        )
+        .textContent =
+        "0.0000";
 
 }
 
 
 /* =========================
-   RESET SEMUA INPUT
-   TERMASUK TEBAL
+   RESET SEMUA
 ========================= */
 
 function resetSemuaInput() {
 
-    /*
-       Jika sedang mode edit,
-       reset juga membatalkan edit.
-    */
-
-    if (editingId !== null) {
+    if (
+        editingId !== null
+    ) {
 
         keluarModeEdit();
 
@@ -1790,17 +2112,20 @@ function resetSemuaInput() {
 
 
     document
-        .getElementById("preview")
-        .textContent = "0.0000";
+        .getElementById(
+            "preview"
+        )
+        .textContent =
+        "0.0000";
 
 
-    tebalInput.focus();
+    tebalTrigger.focus();
 
 }
 
 
 /* =========================
-   MASUK MODE EDIT
+   EDIT DATA
 ========================= */
 
 function editData(id) {
@@ -1811,6 +2136,7 @@ function editData(id) {
                 item.id === id
         );
 
+
     if (!data) {
 
         return;
@@ -1819,14 +2145,14 @@ function editData(id) {
 
 
     /*
-       Simpan ID yang sedang diedit
+       Set mode edit
     */
 
     editingId = id;
 
 
     /*
-       Isi semua input
+       Isi input
     */
 
     tebalInput.value =
@@ -1843,8 +2169,7 @@ function editData(id) {
 
 
     /*
-       Set dropdown tebal
-       tanpa membuka dropdown
+       Set dropdown
     */
 
     const option =
@@ -1881,13 +2206,16 @@ function editData(id) {
             ).textContent +
             " cm";
 
+
         tebalValue.classList.remove(
             "placeholder"
         );
 
+
         option.classList.add(
             "selected"
         );
+
 
         option.setAttribute(
             "aria-selected",
@@ -1898,18 +2226,10 @@ function editData(id) {
 
 
     /*
-       Update preview
+       Preview
     */
 
-    const hasil =
-        hitungKubikasi();
-
-    document
-        .getElementById("preview")
-        .textContent =
-        hasil !== null
-            ? hasil.toFixed(4)
-            : "0.0000";
+    updatePreview();
 
 
     /*
@@ -1928,10 +2248,6 @@ function editData(id) {
         "💾 SIMPAN PERUBAHAN";
 
 
-    /*
-       Tombol RESET berubah menjadi BATAL
-    */
-
     resetButton.classList.remove(
         "btn-reset"
     );
@@ -1945,7 +2261,7 @@ function editData(id) {
 
 
     /*
-       Tampilkan informasi edit
+       Info edit
     */
 
     editInfo.classList.add(
@@ -1954,20 +2270,26 @@ function editData(id) {
 
 
     /*
+       Render ulang supaya baris
+       langsung memiliki animasi
+    */
+
+    renderTable();
+
+
+    /*
        Scroll ke form
     */
 
     document
-        .querySelector(".input-card")
+        .querySelector(
+            ".input-card"
+        )
         .scrollIntoView({
             behavior: "smooth",
             block: "start"
         });
 
-
-    /*
-       Fokus ke Lebar agar mudah diedit
-    */
 
     setTimeout(
         () => {
@@ -1993,7 +2315,7 @@ function keluarModeEdit() {
 
 
     /*
-       Kembalikan tombol utama
+       Tombol utama
     */
 
     mainActionButton.classList.remove(
@@ -2009,7 +2331,7 @@ function keluarModeEdit() {
 
 
     /*
-       Kembalikan tombol reset
+       Tombol reset
     */
 
     resetButton.classList.remove(
@@ -2025,7 +2347,7 @@ function keluarModeEdit() {
 
 
     /*
-       Sembunyikan info edit
+       Info
     */
 
     editInfo.classList.remove(
@@ -2034,8 +2356,7 @@ function keluarModeEdit() {
 
 
     /*
-       Kosongkan input
-       tetapi tidak menghapus data tabel
+       Bersihkan input
     */
 
     tebalInput.value = "";
@@ -2073,14 +2394,19 @@ function keluarModeEdit() {
 
 
     document
-        .getElementById("preview")
+        .getElementById(
+            "preview"
+        )
         .textContent =
         "0.0000";
 
 
     /*
-       Fokus kembali ke tebal
+       Render agar highlight hilang
     */
+
+    renderTable();
+
 
     setTimeout(
         () => {
@@ -2099,29 +2425,18 @@ function keluarModeEdit() {
 ========================= */
 
 inputUrutan.forEach(
-
     input => {
 
         input.addEventListener(
             "input",
             function() {
 
-                const hasil =
-                    hitungKubikasi();
-
-                document
-                    .getElementById("preview")
-                    .textContent =
-
-                    hasil !== null
-                        ? hasil.toFixed(4)
-                        : "0.0000";
+                updatePreview();
 
             }
         );
 
     }
-
 );
 
 
@@ -2130,7 +2445,6 @@ inputUrutan.forEach(
 ========================= */
 
 inputUrutan.forEach(
-
     (input, index) => {
 
         input.addEventListener(
@@ -2145,12 +2459,9 @@ inputUrutan.forEach(
 
                 }
 
+
                 event.preventDefault();
 
-
-                /*
-                   VALIDASI
-                */
 
                 if (
 
@@ -2165,10 +2476,6 @@ inputUrutan.forEach(
 
                 }
 
-
-                /*
-                   PINDAH INPUT
-                */
 
                 if (
 
@@ -2187,11 +2494,6 @@ inputUrutan.forEach(
 
                 }
 
-
-                /*
-                   JIKA ENTER PADA JUMLAH
-                */
-
                 else {
 
                     tambahData();
@@ -2202,7 +2504,6 @@ inputUrutan.forEach(
         );
 
     }
-
 );
 
 
@@ -2216,6 +2517,7 @@ function renderTable() {
         document.getElementById(
             "dataTable"
         );
+
 
     table.innerHTML = "";
 
@@ -2255,12 +2557,19 @@ function renderTable() {
 
 
     dataKubikasi.forEach(
-
         (data, index) => {
+
+            const sedangEdit =
+                editingId === data.id;
+
 
             table.innerHTML += `
 
-                <tr>
+                <tr
+                    class="${sedangEdit
+                        ? "editing-row"
+                        : ""}"
+                    id="row-${data.id}">
 
                     <td
                         class="data-number">
@@ -2296,10 +2605,15 @@ function renderTable() {
                     <td>
 
                         <button
-                            class="edit-btn"
+                            class="edit-btn
+                            ${sedangEdit
+                                ? "editing"
+                                : ""}"
                             onclick="editData(${data.id})">
 
-                            ✏️ Edit
+                            ${sedangEdit
+                                ? "✏️ Sedang Edit"
+                                : "✏️ Edit"}
 
                         </button>
 
@@ -2318,8 +2632,45 @@ function renderTable() {
             `;
 
         }
-
     );
+
+
+    /*
+       Scroll otomatis ke data
+       yang sedang diedit
+    */
+
+    if (
+        editingId !== null
+    ) {
+
+        setTimeout(
+            () => {
+
+                const row =
+                    document.getElementById(
+                        "row-" +
+                        editingId
+                    );
+
+
+                if (row) {
+
+                    row.scrollIntoView({
+
+                        behavior: "smooth",
+
+                        block: "center"
+
+                    });
+
+                }
+
+            },
+            100
+        );
+
+    }
 
 }
 
@@ -2331,16 +2682,13 @@ function renderTable() {
 function updateTotal() {
 
     const total =
-
         dataKubikasi.reduce(
-
             (sum, data) =>
-
                 sum +
-                Number(data.kubikasi),
-
+                Number(
+                    data.kubikasi
+                ),
             0
-
         );
 
 
@@ -2349,7 +2697,6 @@ function updateTotal() {
             "totalKubikasi"
         )
         .textContent =
-
         total.toFixed(4);
 
 }
@@ -2360,18 +2707,6 @@ function updateTotal() {
 ========================= */
 
 function hapusData(id) {
-
-    /*
-       Jika data yang akan dihapus
-       sedang diedit, batalkan mode edit
-    */
-
-    if (editingId === id) {
-
-        keluarModeEdit();
-
-    }
-
 
     const yakin =
         confirm(
@@ -2386,13 +2721,24 @@ function hapusData(id) {
     }
 
 
+    /*
+       Jika data yang dihapus
+       sedang diedit
+    */
+
+    if (
+        editingId === id
+    ) {
+
+        keluarModeEdit();
+
+    }
+
+
     dataKubikasi =
-
         dataKubikasi.filter(
-
             data =>
                 data.id !== id
-
         );
 
 
@@ -2406,7 +2752,7 @@ function hapusData(id) {
 
 
 /* =========================
-   HAPUS SEMUA DATA
+   HAPUS SEMUA
 ========================= */
 
 function hapusSemua() {
@@ -2436,14 +2782,11 @@ function hapusSemua() {
     dataKubikasi = [];
 
 
-    /*
-       Jika sedang mode edit,
-       batalkan juga.
-    */
+    if (
+        editingId !== null
+    ) {
 
-    if (editingId !== null) {
-
-        keluarModeEdit();
+        editingId = null;
 
     }
 
@@ -2453,6 +2796,8 @@ function hapusSemua() {
     renderTable();
 
     updateTotal();
+
+    keluarModeEdit();
 
 }
 
@@ -2501,7 +2846,6 @@ function exportCSV() {
 
 
     dataKubikasi.forEach(
-
         (data, index) => {
 
             csv +=
@@ -2514,52 +2858,41 @@ function exportCSV() {
                 `${data.kubikasi.toFixed(4)}\n`;
 
         }
-
     );
 
 
     const total =
-
         dataKubikasi.reduce(
-
             (sum, data) =>
-
                 sum +
-                Number(data.kubikasi),
-
+                Number(
+                    data.kubikasi
+                ),
             0
-
         );
 
 
     csv +=
-
         `,,,,TOTAL,${total.toFixed(4)}\n`;
 
 
     const blob =
-
         new Blob(
-
             [csv],
-
             {
                 type:
                     "text/csv;charset=utf-8;"
             }
-
         );
 
 
     const url =
-
         URL.createObjectURL(
             blob
         );
 
 
     const link =
-
         document.createElement(
             "a"
         );
@@ -2574,7 +2907,9 @@ function exportCSV() {
     link.click();
 
 
-    URL.revokeObjectURL(url);
+    URL.revokeObjectURL(
+        url
+    );
 
 }
 
@@ -2593,15 +2928,12 @@ updateTotal();
 ========================= */
 
 window.addEventListener(
-
     "load",
-
     function() {
 
-        tebalInput.focus();
+        tebalTrigger.focus();
 
     }
-
 );
 
 </script>
